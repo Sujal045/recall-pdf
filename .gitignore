@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local data created by later steps
+chroma_db/
+.env
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store

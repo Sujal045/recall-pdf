@@ -1,0 +1,4 @@
+# Only for scripts/make_sample_pdfs.py
+-r requirements.txt
+reportlab==5.1.0
+pillow==12.3.0
