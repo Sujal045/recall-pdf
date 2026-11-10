@@ -30,7 +30,8 @@ def main() -> None:
     parser.add_argument("pdf", help="path to a PDF file")
     parser.add_argument("--chunk-size", type=int, default=CHUNK_SIZE)
     parser.add_argument("--chunk-overlap", type=int, default=CHUNK_OVERLAP)
-    parser.add_argument("--question", action="append", help="question to compare (repeatable)")
+    parser.add_argument("--question", action="append", default=[],
+                        help="extra question to compare (repeatable)")
     args = parser.parse_args()
 
     chunks = split_documents(load_pdf(args.pdf), args.chunk_size, args.chunk_overlap)
@@ -52,7 +53,7 @@ def main() -> None:
             va, vb = embeddings.embed_documents([a, b])
             print(f"{cosine_similarity(va, vb):.3f}  {a!r} vs {b!r}")
 
-        questions = args.question or DEFAULT_QUESTIONS
+        questions = DEFAULT_QUESTIONS + args.question
         question_vectors = [embeddings.embed_query(q) for q in questions]
     except OllamaNotReady as err:
         sys.exit(f"Ollama is not ready: {err}")
