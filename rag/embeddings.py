@@ -13,6 +13,13 @@ EMBED_MODEL = "nomic-embed-text"
 DOCUMENT_PREFIX = "search_document: "
 QUERY_PREFIX = "search_query: "
 
+# Saved with stored vectors: vectors made with a different model or prefixes are not comparable.
+EMBEDDING_RECORD = {
+    "embedding_model": EMBED_MODEL,
+    "document_prefix": DOCUMENT_PREFIX,
+    "query_prefix": QUERY_PREFIX,
+}
+
 
 class OllamaNotReady(RuntimeError):
     """Ollama is not running, or the embedding model has not been pulled."""
